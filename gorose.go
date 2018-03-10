@@ -233,13 +233,10 @@ func (conn *Connection) Execute(args ...interface{}) (int64, error) {
 	return database.Execute(args...)
 }
 
-// ExecuteInsert str
-func (conn *Connection) ExecuteInsert(args ...interface{}) (int64, int64, error) {
+// GetInstance , get the database object
+func (conn *Connection) GetInstance() Database {
 	var database Database
-	_, err := database.Execute(args...)
-	lastInsertID := int64(database.LastInsertId)
-	affectedRows := int64(database.RowsAffected)
-	return lastInsertID, affectedRows, err
+	return database
 }
 
 // JsonEncode : parse json
